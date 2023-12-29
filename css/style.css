@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(../img/scott-webb-hDyO6rr3kqk-unsplash.jpg);
+    background-size: cover;
+    background-position: center; /* Cambiado a 'center' en lugar de 'left bottom' */
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden; /* Para evitar el scroll horizontal */
+}
+main {
+    margin-left: 30px;
+    display: flex;
+    height: 100vh;
+    width: 50%;
+}
+.contenedor {
+    font-size: 18px;
+    margin: 50px auto 0; /* Ajusta el margen superior a 50px y los laterales automático */
+    text-align: center;
+    max-width: 100%;
+}
+
+/*persona-fecha*/
+
+#fecha{
+    font-size: 15px;
+    font-style: italic;
+    padding: 20px;
+}
+#nombreDiv{
+    padding: 20px;
+}
+/*agregar tarea*/
+.agregar-tarea {
+    background: #ffffff40;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 70px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    filter: drop-shadow(10px 20px 10px #0000004d);
+    transition: transform 0.3s ease;
+}
+.agregar-tarea #input {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.agregar-tarea #input::placeholder {
+    color: black; 
+}
+.agregar-tarea #input:hover::placeholder {
+    color: grey; 
+}
+.agregar-tarea:hover{
+    transform: scale(1.1);
+}
+.agregar-tarea i{
+    font-size: 35px;
+}
+.agregar-tarea i:hover{
+    transform: scale(1.1);
+    color:  rgb(188, 185, 185);
+    cursor: pointer;
+}
+/*seccion tareas*/
+.seccion-tareas {
+    text-align: center;
+    overflow-y: auto; 
+    max-height: 55vh; 
+}
+.seccion-tareas::-webkit-scrollbar {
+    width: 8px; 
+}
+.seccion-tareas::-webkit-scrollbar-thumb {
+    background-color: grey; 
+    border-radius: 10px; 
+}
+.seccion-tareas::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+.seccion-tareas::-webkit-scrollbar-thumb:hover{
+    background-color: white;
+}
+.seccion-tareas h3{
+    margin-bottom: 20px;
+}
+.seccion-tareas i{
+    font-size: 25px;
+}
+.seccion-tareas i:hover{
+    cursor: pointer;
+    color: rgb(188, 185, 185);
+    transform: scale(1.1);
+}
+.seccion-tareas #lista li{
+    display: flex;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+    justify-content: space-between;
+}
+.seccion-tareas #lista li p {
+    font-size: 25px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    max-width: calc(100% - 60px); 
+}
+.line-through{
+    text-decoration: line-through;
+    color: grey;
+}
+@media screen and (max-width: 780px) {
+    main {
+        width: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+    }
+    .seccion-tareas {
+        max-height: 40vh; 
+    }
+    .seccion-tareas #lista li p {
+        max-width: 90%; 
+    }
+}
+
+.sortable-list li {
+    cursor: grab;
+}
