@@ -11,6 +11,7 @@ let numeroTelefono;
 
 document.addEventListener("DOMContentLoaded", () => {
   traerTareaStorage();
+  borrarTodo();
   if (tareas.length === 0 && !nombreUsuario) {
     Swal.fire({
       title: "Quiero recibir notificaciones cuando agrego una tarea nueva.",
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmButtonText: "Aceptar",
       showLoaderOnConfirm: true,
       confirmButtonColor: "#008000",
+      cancelButtonColor: "#ff0000",
       preConfirm: () => {
         const nombre = document.getElementById(`nombre`).value;
         const telefono = document.getElementById(`telefono`).value;
@@ -54,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmButtonText: "Aceptar",
       showLoaderOnConfirm: true,
       confirmButtonColor: "#008000",
+      cancelButtonColor: "#ff0000",
       preConfirm: () => {
         const telefono = document.getElementById(`telefono`).value;
         if (telefono === "" || isNaN(telefono)) {
@@ -92,6 +95,7 @@ function agregarTarea(tarea) {
   input.value = "";
   actualizarListaTareas();
   actualizarStorage();
+  borrarTodo();
 }
 
 botonAgregar.addEventListener("click", () => {
@@ -141,6 +145,7 @@ function actualizarListaTareas() {
       nuevoItem.remove();
       actualizarListaTareas();
       actualizarStorage();
+      borrarTodo();
     });
   });
 }
@@ -169,4 +174,46 @@ document.addEventListener('DOMContentLoaded', () => {
       animation: 350,
   });
 });
+
+function borrarTodo() {
+  const seccionTareas = document.querySelector(".seccion-tareas");
+  const botonBorrarTodo = document.getElementById("borrarTodo");
+
+  if (tareas.length >= 2) {
+    if (!botonBorrarTodo) {
+      const boton = document.createElement("button");
+      boton.innerHTML = `<i class="bi bi-trash2" id="borrarTodo">Borrar todo</i>`;
+      boton.addEventListener("click",() =>{
+        eliminarTodasLasTareas()})
+      seccionTareas.insertBefore(boton, seccionTareas.firstChild);
+    }
+  } else {
+    if (botonBorrarTodo) {
+      botonBorrarTodo.parentNode.parentNode.removeChild(botonBorrarTodo.parentNode);
+    }
+  }
+}
+
+async function eliminarTodasLasTareas() {
+  const confirmacion = await Swal.fire({
+    title: "¿Estás seguro de que quieres borrar todas las tareas?",
+    text: "¡No hay vuelta atrás!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#008000",
+    cancelButtonColor: "#ff0000",
+    confirmButtonText: "Sí, borrar todo."
+  });
+  if (confirmacion.isConfirmed) {
+    Swal.fire({
+      title: "¡Tareas borradas con éxito!",
+      icon: "success"
+    });
+    tareas = []; 
+    actualizarListaTareas(); 
+    actualizarStorage(); 
+    borrarTodo(); 
+  }
+}
+
 
