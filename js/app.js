@@ -196,7 +196,7 @@ function borrarTodo() {
 
 async function eliminarTodasLasTareas() {
   const confirmacion = await Swal.fire({
-    title: "¿Estás seguro de que quieres borrar todas las tareas?",
+    title: "¿Estás seguro de que queres borrar todas las tareas?",
     text: "¡No hay vuelta atrás!",
     icon: "warning",
     showCancelButton: true,
@@ -207,7 +207,8 @@ async function eliminarTodasLasTareas() {
   if (confirmacion.isConfirmed) {
     Swal.fire({
       title: "¡Tareas borradas con éxito!",
-      icon: "success"
+      icon: "success",
+      confirmButtonColor:"#808080",
     });
     tareas = []; 
     actualizarListaTareas(); 
@@ -216,4 +217,23 @@ async function eliminarTodasLasTareas() {
   }
 }
 
+fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        if(response.ok){
+        return response.json();
+      }})
+      .then(usuarios => {
+        console.log(usuarios);
+        if (!encontrarUsuario(nombreUsuario,numeroTelefono,usuarios)){
+          const nuevoUsuario = {nombre:nombreUsuario,numero:numeroTelefono}
+          usuarios.push(nuevoUsuario);
+        }
+      })
 
+function encontrarUsuario(nombre,numero,lista){
+  if (lista.some(usuario => nombre === usuario.nombre && numero === usuario.numero)){
+    return false
+  }else{
+    return true
+  }
+}
