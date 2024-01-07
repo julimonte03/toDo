@@ -225,9 +225,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
       .then(usuarios => {
         if (!encontrarUsuario(nombreUsuario,numeroTelefono,usuarios)){
           const nuevoUsuario = {nombre:nombreUsuario,numero:numeroTelefono}
-          console.log(nuevoUsuario);
           usuarios.push(nuevoUsuario);
-          console.log(usuarios);
         }
       })
 
