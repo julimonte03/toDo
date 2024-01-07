@@ -223,17 +223,18 @@ fetch('https://jsonplaceholder.typicode.com/users')
         return response.json();
       }})
       .then(usuarios => {
-        console.log(usuarios);
         if (!encontrarUsuario(nombreUsuario,numeroTelefono,usuarios)){
           const nuevoUsuario = {nombre:nombreUsuario,numero:numeroTelefono}
+          console.log(nuevoUsuario);
           usuarios.push(nuevoUsuario);
+          console.log(usuarios);
         }
       })
 
 function encontrarUsuario(nombre,numero,lista){
   if (lista.some(usuario => nombre === usuario.nombre && numero === usuario.numero)){
-    return false
-  }else{
     return true
+  }else{
+    return false
   }
 }
