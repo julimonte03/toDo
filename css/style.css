@@ -7,11 +7,11 @@ body {
     font-family: 'Poppins', sans-serif;
     background-image: url(../img/scott-webb-hDyO6rr3kqk-unsplash.jpg);
     background-size: cover;
-    background-position: center; /* Cambiado a 'center' en lugar de 'left bottom' */
+    background-position: center; 
     background-repeat: no-repeat;
     margin: 0;
     height: 100vh;
-    overflow-x: hidden; /* Para evitar el scroll horizontal */
+    overflow-x: hidden; 
 }
 main {
     margin-left: 30px;
